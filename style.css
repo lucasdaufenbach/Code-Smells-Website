@@ -11,11 +11,36 @@ body{
   background: url('./winXP.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: Tahoma, Verdana, sans-serif;
-  min-height:100vh; display:flex; justify-content:center; align-items:flex-start; padding:24px;
+  min-height:100vh; 
+  overflow-x: hidden;
+  display:flex; 
+  justify-content:center; 
+  align-items:center; 
+  padding:24px;
+  box-sizing: border-box;
 }
-.container{ display:flex; flex-direction:column; align-items:center; gap:28px; }
-.deck{ position:relative; width:var(--win-w); height:calc(var(--win-h) + (6 * var(--offset-y)) + 20px); }
-.window{ position:absolute; width:var(--win-w); height:var(--win-h); display:flex; flex-direction:column; }
+.container{ 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:28px; 
+}
+.deck{ 
+  position:relative; 
+  width:calc(var(--win-w) + (6 * var(--offset-x)));
+  height:calc(var(--win-h) + (6 * var(--offset-y)));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.window{ 
+  position:absolute; 
+  width:var(--win-w); 
+  height:var(--win-h); 
+  display:flex; 
+  flex-direction:column; 
+  transform-origin: center center;
+}
 .title-bar-text{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .window-body{ padding:12px; flex:1; overflow:auto }
 .window-body p{ margin:0 }
@@ -26,8 +51,24 @@ body{
 
 /* PRÁTICA */
 #practice[hidden]{ display:none; }
-#practice{ width:min(900px, 96vw); }
-.practice-title{ color:#fff; font-weight:bold; margin:6px 0 0 0; font-size:14px; text-align:center; }
+#practice{ 
+  width:min(900px, 96vw); 
+  max-width: calc(100vw - 48px);
+}
+.practice-title{ 
+  background: linear-gradient(to bottom, #0054e3 0%, #0046dc 3%, #003dd6 6%, #0039d0 8%, #0033c7 12%, #002db9 17%, #0027aa 25%, #00219a 37%, #001a8a 50%, #001379 62%, #000c69 75%, #000559 87%, #000049 100%);
+  color:#fff; 
+  font-weight:bold; 
+  margin:6px 0 16px 0; 
+  font-size:14px; 
+  text-align:center; 
+  padding:8px 16px;
+  border:2px outset #4a90e2;
+  border-radius:0;
+  font-family: Tahoma, sans-serif;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3), inset -1px -1px 0 rgba(0,0,0,0.3);
+}
 .grid{ display:grid; gap:16px; grid-template-columns: 1fr; }
 .xp-panel{ background:#ece9d8; border:2px solid #000080; border-radius:4px; box-shadow: inset -1px -1px #808080, inset 1px 1px #fff; }
 .xp-title{ background:#000080; color:#fff; padding:4px 6px; font-weight:bold; font-size:14px; }
@@ -172,8 +213,8 @@ body{
 }
 
 @media (max-width: 700px){
-  :root{ --win-w: 92vw; }
-  .deck{ width:var(--win-w); }
+  :root{ --win-w: 92vw; --offset-x: 20px; --offset-y: 20px; }
+  .deck{ width:calc(var(--win-w) + (6 * var(--offset-x))); }
   .window{ width:var(--win-w); }
   .codebox{ max-height: 220px; }
   .completion-content h2{ font-size:20px; }
