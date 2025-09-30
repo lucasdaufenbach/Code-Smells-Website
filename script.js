@@ -1,8 +1,17 @@
-// ===== 1) Posiciona pilha em cascata =====
+// ===== 1) Posiciona pilha em cascata centralizada =====
 const wins = Array.from(document.querySelectorAll('.deck .window'));
 wins.forEach((win, i) => {
-  win.style.top = `calc(${i} * var(--offset-y))`;
-  win.style.left = `calc(${i} * var(--offset-x))`;
+  // Pega os valores das variáveis CSS
+  const offsetX = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--offset-x'));
+  const offsetY = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--offset-y'));
+  
+  // Calcula o offset total da pilha para centralizar
+  const totalOffsetX = (wins.length - 1) * offsetX;
+  const totalOffsetY = (wins.length - 1) * offsetY;
+  
+  // Posiciona cada janela centralizada
+  win.style.left = `calc(50% - var(--win-w)/2 - ${totalOffsetX/2}px + ${i * offsetX}px)`;
+  win.style.top = `calc(50% - var(--win-h)/2 - ${totalOffsetY/2}px + ${i * offsetY}px)`;
   win.style.zIndex = wins.length - i;
 });
 
