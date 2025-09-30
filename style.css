@@ -1,0 +1,181 @@
+:root{
+  --offset-x: 30px;
+  --offset-y: 30px;
+  --win-w: 640px;
+  --win-h: 140px;
+}
+
+/* Base */
+body{
+  margin:0; 
+  background: url('./winXP.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Tahoma, Verdana, sans-serif;
+  min-height:100vh; display:flex; justify-content:center; align-items:flex-start; padding:24px;
+}
+.container{ display:flex; flex-direction:column; align-items:center; gap:28px; }
+.deck{ position:relative; width:var(--win-w); height:calc(var(--win-h) + (6 * var(--offset-y)) + 20px); }
+.window{ position:absolute; width:var(--win-w); height:var(--win-h); display:flex; flex-direction:column; }
+.title-bar-text{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.window-body{ padding:12px; flex:1; overflow:auto }
+.window-body p{ margin:0 }
+.title-bar-controls button{ outline:none !important; }
+.title-bar-controls button:hover{ filter:none !important; opacity:1 !important; }
+.title-bar-controls button:active{ transform:none !important; }
+.title-bar-controls button:focus{ outline:none !important; box-shadow:none !important; }
+
+/* PRÁTICA */
+#practice[hidden]{ display:none; }
+#practice{ width:min(900px, 96vw); }
+.practice-title{ color:#fff; font-weight:bold; margin:6px 0 0 0; font-size:14px; text-align:center; }
+.grid{ display:grid; gap:16px; grid-template-columns: 1fr; }
+.xp-panel{ background:#ece9d8; border:2px solid #000080; border-radius:4px; box-shadow: inset -1px -1px #808080, inset 1px 1px #fff; }
+.xp-title{ background:#000080; color:#fff; padding:4px 6px; font-weight:bold; font-size:14px; }
+.xp-body{ padding:10px; }
+
+/* Caixa de código com colorização moderna */
+.codebox{
+  background:#0b0b0b; color:#ddd;
+  font-family: Consolas, "Courier New", monospace;
+  font-size:13px; line-height:1.45;
+  padding:10px; border:2px inset #808080; border-radius:2px; overflow:auto; max-height:180px;
+  white-space:pre; /* preserva indentação original */
+}
+
+/* Tokens (estilo inspirado no VS Code Dark) */
+.tok-kw   { color:#569cd6; }   /* let, function, etc */
+.tok-str  { color:#ce9178; }   /* "strings" */
+.tok-num  { color:#b5cea8; }   /* 123, 3.14 */
+.tok-bool { color:#4fc1ff; }   /* true/false */
+.tok-op   { color:#d4d4d4; }   /* =, {}, () */
+.tok-id   { color:#dcdcaa; }   /* nomes (opcional realce leve) */
+.tok-comm { color:#6a9955; }   /* comentários */
+
+.options{ display:grid; gap:8px; margin-top:10px; }
+.options label{ 
+  display:flex; align-items:center; gap:8px; font-size:13px; 
+  cursor:pointer; padding:3px 6px; margin:1px 0;
+  background: transparent;
+  border: 1px solid transparent;
+  font-family: Tahoma, sans-serif;
+}
+
+/* Selected state - quando radio está marcado */
+.options label:has(input[type="radio"]:checked) {
+  background: #316AC5;
+  color: #fff;
+  border: 1px solid #0A246A;
+}
+
+/* Disabled selected state */
+.options label:has(input[type="radio"]:checked:disabled) {
+  background: #7A7A7A;
+  color: #fff;
+  border: 1px solid #555;
+}
+/* Radio button personalizado estilo Windows XP */
+.options input[type="radio"] { 
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px inset #c0c0c0;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+
+
+.options input[type="radio"]:checked {
+  background: #fff;
+  border: 2px inset #808080;
+}
+
+.options input[type="radio"]:checked::before {
+  content: '●';
+  position: absolute;
+  left: 2px;
+  top: -1px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+  line-height: 1;
+}
+
+/* Radio button dentro de label selecionado - fundo branco mais visível */
+.options label:has(input[type="radio"]:checked) input[type="radio"] {
+  background: #fff;
+  border: 2px solid #000;
+}
+
+.options input[type="radio"]:disabled {
+  background: #c0c0c0;
+  border: 2px inset #808080;
+  cursor: not-allowed;
+}
+
+.options input[type="radio"]:disabled::before {
+  color: #666;
+}
+.divider{ height:1px; background:#555; opacity:.4; margin:8px 0; }
+.respond-btn{ 
+  background:#ece9d8; border:2px outset #fff; font-family:Tahoma, sans-serif; 
+  font-size:13px; padding:6px 12px; cursor:pointer; transition:all 0.2s;
+  border-radius:2px;
+}
+.respond-btn:hover:not(:disabled){ 
+  background:#f0f0f0; transform:translateY(-1px); 
+  box-shadow:0 2px 4px rgba(0,0,0,0.2);
+}
+.respond-btn:disabled{ 
+  color:#555; cursor:default; border:2px inset #808080; 
+  transform:none; box-shadow:none;
+}
+
+/* Tela de erro em tela cheia */
+.error-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.error-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mensagem de conclusão */
+.completion-message{
+  margin-top:30px; padding:20px; text-align:center;
+  background:linear-gradient(135deg, #4CAF50, #45a049);
+  border:3px solid #2E7D32; border-radius:8px;
+  color:#fff; box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  opacity:0; transform:translateY(20px);
+  transition:all 0.5s ease;
+}
+.completion-content h2{
+  margin:0 0 15px 0; font-size:24px; text-shadow:2px 2px 4px rgba(0,0,0,0.3);
+}
+.completion-content p{
+  margin:10px 0; font-size:16px; line-height:1.4;
+}
+
+@media (max-width: 700px){
+  :root{ --win-w: 92vw; }
+  .deck{ width:var(--win-w); }
+  .window{ width:var(--win-w); }
+  .codebox{ max-height: 220px; }
+  .completion-content h2{ font-size:20px; }
+  .completion-content p{ font-size:14px; }
+}

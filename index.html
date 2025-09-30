@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nomenclatura Inconsistente — Clean Code</title>
+
+  <!-- XP.css via CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+
+  <!-- Estilos do projeto -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- ===== PARTE 1: JANELAS EM CASCATA ===== -->
+    <main class="deck" id="deck">
+      <div class="window" role="region" aria-labelledby="card1">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card1">1. Mistura de Idiomas</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Quando variáveis, funções ou classes usam palavras em idiomas diferentes (ex.: português e inglês). Isso gera confusão, dificulta padronização e atrapalha a comunicação em times de diferentes contextos.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card2">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card2">2. Padrões de Case Diferentes</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Misturar estilos de escrita como camelCase, PascalCase, snake_case ou UPPER_CASE dentro do mesmo projeto. A falta de consistência aumenta a curva de aprendizado e pode causar erros em linguagens sensíveis a maiúsculas e minúsculas.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card3">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card3">3. Acrônimos Inconsistentes</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Usar siglas e abreviações de formas diferentes, ora com letras maiúsculas, ora minúsculas, ou mudando a posição dentro do nome. Essa falta de padrão torna o código menos previsível e mais sujeito a falhas de interpretação.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card4">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card4">4. Falta de Clareza Semântica</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Nomes que não representam claramente o que a variável, função ou classe faz. Palavras genéricas, abreviações excessivas ou ambiguidades aumentam a dificuldade de entender a intenção do código.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card5">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card5">5. Unidades Omitidas ou Inconsistentes</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Nomes de variáveis que representam valores numéricos sem deixar claro a unidade de medida. Isso pode causar erros lógicos em cálculos ou comparações.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card6">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card6">6. Booleans sem Padrão de Prefixo</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Variáveis lógicas que não seguem convenções como is, has, can ou should. Sem padrão, fica mais difícil entender rapidamente o significado de um valor booleano.</p>
+        </div>
+      </div>
+
+      <div class="window" role="region" aria-labelledby="card7">
+        <div class="title-bar">
+          <div class="title-bar-text" id="card7">7. Nomes Diferentes para a Mesma Coisa</div>
+          <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Maximize"></button>
+            <button aria-label="Close" class="btn-close"></button>
+          </div>
+        </div>
+        <div class="window-body">
+          <p>Usar múltiplos nomes distintos para se referir ao mesmo conceito dentro do sistema aumenta redundância e confusão.</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== PARTE 2: PRÁTICA ===== -->
+    <section id="practice" aria-live="polite" hidden>
+      <p class="practice-title">🧪 Prática — Identifique o tipo de nomeclatura inconsistente em cada trecho</p>
+
+      <div class="grid">
+        <!-- Atividade 1 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 1</div>
+          <div class="xp-body">
+            <div class="codebox">let usuarioName = "Lucas";
+let idade = 25;
+let userEmail = "lucas@email";</div>
+
+            <div class="options">
+              <label><input type="radio" name="a1" value="idiomas"> Mistura de Idiomas</label>
+              <label><input type="radio" name="a1" value="clareza"> Falta de Clareza Semântica</label>
+              <label><input type="radio" name="a1" value="acronimos"> Acrônimos Inconsistentes</label>
+              <label><input type="radio" name="a1" value="mesma-coisa"> Nomes Diferentes para a Mesma Coisa</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 2 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 2</div>
+          <div class="xp-body">
+            <div class="codebox">let userName = "Lucas";
+let UserAge = 25;
+let user_email = "...";
+let USERID = "123";</div>
+
+            <div class="options">
+              <label><input type="radio" name="a2" value="case"> Padrões de Case Diferentes</label>
+              <label><input type="radio" name="a2" value="idiomas"> Mistura de Idiomas</label>
+              <label><input type="radio" name="a2" value="acronimos"> Acrônimos Inconsistentes</label>
+              <label><input type="radio" name="a2" value="booleans"> Booleans sem Padrão de Prefixo</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 3 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 3</div>
+          <div class="xp-body">
+            <div class="codebox">let userId = "123";
+let userID = "123";
+let User_Id = "123";</div>
+
+            <div class="options">
+              <label><input type="radio" name="a3" value="acronimos"> Acrônimos Inconsistentes</label>
+              <label><input type="radio" name="a3" value="case"> Padrões de Case Diferentes</label>
+              <label><input type="radio" name="a3" value="mesma-coisa"> Nomes Diferentes para a Mesma Coisa</label>
+              <label><input type="radio" name="a3" value="clareza"> Falta de Clareza Semântica</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 4 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 4</div>
+          <div class="xp-body">
+            <div class="codebox">let tmp = 20;
+let data = "2025-09-29";</div>
+
+            <div class="options">
+              <label><input type="radio" name="a4" value="clareza"> Falta de Clareza Semântica</label>
+              <label><input type="radio" name="a4" value="idiomas"> Mistura de Idiomas</label>
+              <label><input type="radio" name="a4" value="unidades"> Unidades Omitidas ou Inconsistentes</label>
+              <label><input type="radio" name="a4" value="mesma-coisa"> Nomes Diferentes para a Mesma Coisa</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 5 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 5</div>
+          <div class="xp-body">
+            <div class="codebox">let timeout = 3;
+let retry_ms = 200;
+let backoffSeconds = 1;</div>
+
+            <div class="options">
+              <label><input type="radio" name="a5" value="unidades"> Unidades Omitidas ou Inconsistentes</label>
+              <label><input type="radio" name="a5" value="case"> Padrões de Case Diferentes</label>
+              <label><input type="radio" name="a5" value="clareza"> Falta de Clareza Semântica</label>
+              <label><input type="radio" name="a5" value="acronimos"> Acrônimos Inconsistentes</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 6 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 6</div>
+          <div class="xp-body">
+            <div class="codebox">let active = true;
+let isActive = true;
+let has_active = true;</div>
+
+            <div class="options">
+              <label><input type="radio" name="a6" value="booleans"> Booleans sem Padrão de Prefixo</label>
+              <label><input type="radio" name="a6" value="case"> Padrões de Case Diferentes</label>
+              <label><input type="radio" name="a6" value="acronimos"> Acrônimos Inconsistentes</label>
+              <label><input type="radio" name="a6" value="idiomas"> Mistura de Idiomas</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+
+        <!-- Atividade 7 -->
+        <div class="xp-panel">
+          <div class="xp-title">Atividade 7</div>
+          <div class="xp-body">
+            <div class="codebox">function getUserById(id) { }
+function fetchClienteById(id) { }
+function carregarUsuario(id) { }</div>
+
+            <div class="options">
+              <label><input type="radio" name="a7" value="mesma-coisa"> Nomes Diferentes para a Mesma Coisa</label>
+              <label><input type="radio" name="a7" value="idiomas"> Mistura de Idiomas</label>
+              <label><input type="radio" name="a7" value="clareza"> Falta de Clareza Semântica</label>
+              <label><input type="radio" name="a7" value="case"> Padrões de Case Diferentes</label>
+            </div>
+            <div class="divider"></div>
+            <button class="respond-btn">Responder</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Scripts do projeto -->
+  <script src="./script.js"></script>
+</body>
+</html>
